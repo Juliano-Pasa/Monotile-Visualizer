@@ -1,4 +1,4 @@
-#include "Monotile.h"
+#include "Monotile.hpp"
 
 #include "glm/gtc/constants.hpp"
 

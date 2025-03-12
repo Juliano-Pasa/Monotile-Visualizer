@@ -1,4 +1,4 @@
-#include "PlaneRenderer.h"
+#include "Renderer.hpp"
 #include <iostream>
 
 namespace monotile
@@ -9,7 +9,7 @@ namespace monotile
 		 (keyOnce[KEY] ? false : (keyOnce[KEY] = true)) :   \
 		 (keyOnce[KEY] = false))
 
-	PlaneRenderer::PlaneRenderer(GLFWwindow* window)
+	Renderer::Renderer(GLFWwindow* window)
 	{
 		this->window = window;
 		vaoID = -1;
@@ -21,7 +21,7 @@ namespace monotile
 		totalTiles = 1;
 	}
 
-	void PlaneRenderer::Initialize(int totalHexs)
+	void Renderer::Initialize(int totalHexs)
 	{
 		try {
 			shader.compileShader("shader/Plane.vert", GLSLShader::VERTEX);
@@ -55,7 +55,7 @@ namespace monotile
 		modelViewProjectionMatrix = projectionMatrix * viewMatrix * modelMatrix;
 	}
 
-	void PlaneRenderer::Update(double dt)
+	void Renderer::Update(double dt)
 	{
 		ProcessInput();
 
@@ -77,7 +77,7 @@ namespace monotile
 		UpdateBuffers();
 	}
 
-	void PlaneRenderer::Render()
+	void Renderer::Render()
 	{
 		shader.use();
 		shader.setUniform("MVP", modelViewProjectionMatrix);
@@ -93,7 +93,7 @@ namespace monotile
 		glBindVertexArray(0);
 	}
 
-	void PlaneRenderer::GenHexs(int totalHexs)
+	void Renderer::GenHexs(int totalHexs)
 	{
 		Monotile monotile(totalHexs);
 
@@ -119,7 +119,7 @@ namespace monotile
 		}
 	}
 
-	void PlaneRenderer::GenMonos(int total, float a, float offset)
+	void Renderer::GenMonos(int total, float a, float offset)
 	{
 		vertices.clear();
 		indices.clear();
@@ -148,7 +148,7 @@ namespace monotile
 		}
 	}
 
-	void PlaneRenderer::GenConnections()
+	void Renderer::GenConnections()
 	{
 		std::vector<std::pair<unsigned int, unsigned int>> newConnections;
 
@@ -190,7 +190,7 @@ namespace monotile
 		}
 	}
 
-	void PlaneRenderer::InitializeConnections()
+	void Renderer::InitializeConnections()
 	{
 		connections.clear();
 		for (unsigned int i = 0; i < vertices.size(); i++)
@@ -204,19 +204,19 @@ namespace monotile
 		}
 	}
 
-	bool PlaneRenderer::LineIntersection(glm::vec3 p0, glm::vec3 p1, glm::vec3 p2, glm::vec3 p3)
+	bool Renderer::LineIntersection(glm::vec3 p0, glm::vec3 p1, glm::vec3 p2, glm::vec3 p3)
 	{
 		return CounterClockWise(p0, p2, p3) != CounterClockWise(p1, p2, p3) &&
 			CounterClockWise(p0, p1, p2) != CounterClockWise(p0, p1, p3);
 	}
 
-	bool PlaneRenderer::CounterClockWise(glm::vec3 a, glm::vec3 b, glm::vec3 c)
+	bool Renderer::CounterClockWise(glm::vec3 a, glm::vec3 b, glm::vec3 c)
 	{
 		return (c.y - a.y) * (b.x - a.x) > (b.y - a.y) * (c.x - a.x);
 	}
 
 
-	void PlaneRenderer::GenBuffers()
+	void Renderer::GenBuffers()
 	{
 		for (auto& vertex : vertices)
 		{
@@ -252,7 +252,7 @@ namespace monotile
 		glBindVertexArray(0); 
 	}
 
-	void PlaneRenderer::UpdateBuffers()
+	void Renderer::UpdateBuffers()
 	{
 		glBindVertexArray(vaoID);
 
@@ -272,7 +272,7 @@ namespace monotile
 		glBindVertexArray(0);
 	}
 
-	void PlaneRenderer::Debug()
+	void Renderer::Debug()
 	{
 		std::cout << "A | B " << side << " | " << 1 + sqrt(3.0f) - side << std::endl;
 
@@ -283,7 +283,7 @@ namespace monotile
 		}
 	}
 
-	void PlaneRenderer::ProcessInput()
+	void Renderer::ProcessInput()
 	{
 		// toggle wireframe
 		if (glfwGetKeyOnce(window, 'Q')) {

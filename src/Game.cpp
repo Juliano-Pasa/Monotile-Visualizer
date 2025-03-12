@@ -4,7 +4,7 @@
 #include "GLUtils.hpp"
 #include <stdio.h>
 
-namespace Monotile
+namespace monotile
 {
     Game::Game()
     {
@@ -16,6 +16,8 @@ namespace Monotile
         InitializeGLFW();
         InitializeGLAD();
         InitializeGL();
+
+        renderer = new Renderer(window);
 
         while (!glfwWindowShouldClose(window))
         {

@@ -1,7 +1,9 @@
-#pragma once
+#ifndef __RENDERER_HPP__
+#define __RENDERER_HPP__
 
-#include <GL/glew.h>
-#include <GLFW\glfw3.h>
+#include "glad.h"
+#include <GLFW/glfw3.h>
+
 #include <glm/common.hpp>
 
 #include "glslprogram.hpp"
@@ -9,10 +11,10 @@
 
 namespace monotile
 {
-	class PlaneRenderer
+	class Renderer
 	{
 	public:
-		PlaneRenderer(GLFWwindow* window);
+		Renderer(GLFWwindow* window);
 
 		void Initialize(int totalHexs);
 		void Update(double dt);
@@ -55,3 +57,5 @@ namespace monotile
 		std::vector<std::pair<unsigned int, unsigned int>> connections;
 	};
 }
+
+#endif // __RENDERER_HPP__

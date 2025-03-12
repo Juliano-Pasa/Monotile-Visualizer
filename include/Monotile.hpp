@@ -2,7 +2,7 @@
 
 #include "Model.hpp"
 
-#include <GL/glew.h>
+#include "glad.h"
 
 #include <vector>
 #include <glm/common.hpp>

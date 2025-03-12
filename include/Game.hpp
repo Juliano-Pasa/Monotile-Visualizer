@@ -6,9 +6,12 @@
 
 #include <GLFW/glfw3.h>
 
-namespace Monotile
+#include "Renderer.hpp"
+
+namespace monotile
 {
     using namespace std;
+    using namespace monotile;
 
     class Game
     {
@@ -27,6 +30,7 @@ namespace Monotile
         void MainLoop();
 
         GLFWwindow* window;
+        Renderer* renderer;
     };
 }
 
