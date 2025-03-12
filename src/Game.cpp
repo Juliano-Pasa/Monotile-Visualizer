@@ -17,12 +17,9 @@ namespace monotile
         InitializeGL();
 
         renderer = new Renderer(window);
+        renderer->Initialize(3);
 
-        while (!glfwWindowShouldClose(window))
-        {
-            MainLoop();
-        }
-
+        MainLoop();
         glfwTerminate();
     }
 
@@ -77,8 +74,21 @@ namespace monotile
 
     void Game::MainLoop()
     {
-        glfwPollEvents();
-        glClear(GL_COLOR_BUFFER_BIT);
-        glfwSwapBuffers(window);
+        double thisTime;
+        double lastTime = glfwGetTime();
+
+        while (!glfwWindowShouldClose(window))
+        {
+            glfwPollEvents();
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            GLUtils::checkForOpenGLError(__FILE__, __LINE__);
+
+            thisTime = glfwGetTime();
+            renderer->Update(thisTime - lastTime);
+            lastTime = thisTime;
+
+            renderer->Render();
+            glfwSwapBuffers(window);
+        }
     }
 }
