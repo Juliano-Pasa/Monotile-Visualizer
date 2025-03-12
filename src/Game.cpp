@@ -58,7 +58,7 @@ namespace monotile
 
     void Game::InitializeGL()
     {
-        glad_glClearColor(0.25f, 0.5f, 0.75f, 1.0f);
+        glad_glClearColor(0.76f, 0.39f, 0.36f, 1.0f);
         glad_glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
 

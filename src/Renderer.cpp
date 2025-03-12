@@ -139,7 +139,7 @@ namespace monotile
 					indices.push_back(index + currentIndex);
 				else
 					indices.push_back(primitiveRestartIndex);
-				colors.push_back(vec3(1.0f, 0.0f, 0.0f));
+				colors.push_back(vec3(0.7f, 0.76f, 0.36f));
 			}
 
 			model.vertices.erase(model.vertices.begin(), model.vertices.end());
