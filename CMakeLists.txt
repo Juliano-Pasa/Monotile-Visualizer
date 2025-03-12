@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10.0)
-project(openGlTesting VERSION 0.1.0 LANGUAGES C CXX)
+project(MonotileVisualizer VERSION 0.1.0 LANGUAGES C CXX)
 
-include_directories(include)
-add_executable(openGlTesting src/main.cpp src/glad.c)
+include_directories(include utils)
+add_executable(MonotileVisualizer src/main.cpp src/glad.c utils/GLUtils.cpp)
 
-target_link_libraries(openGlTesting glfw)
+target_link_libraries(MonotileVisualizer glfw)
