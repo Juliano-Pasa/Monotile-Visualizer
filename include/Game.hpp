@@ -20,6 +20,9 @@ namespace Monotile
         void InitializeGLFW();
         void InitializeGLAD();
         void InitializeGL();
+        void InitializeCallbacks();
+
+        static void GLFWErrorCallback(int error, const char* description);
 
         void MainLoop();
 
