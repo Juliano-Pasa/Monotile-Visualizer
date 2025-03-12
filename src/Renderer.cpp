@@ -1,5 +1,6 @@
 #include "Renderer.hpp"
 #include <iostream>
+#include <filesystem>
 
 namespace monotile
 {
@@ -24,8 +25,8 @@ namespace monotile
 	void Renderer::Initialize(int totalHexs)
 	{
 		try {
-			shader.compileShader("shader/Plane.vert", GLSLShader::VERTEX);
-			shader.compileShader("shader/Plane.frag", GLSLShader::FRAGMENT);
+			shader.compileShader("../shaders/Plane.vert", GLSLShader::VERTEX);
+			shader.compileShader("../shaders/Plane.frag", GLSLShader::FRAGMENT);
 
 			shader.link();
 			shader.use();
@@ -35,7 +36,8 @@ namespace monotile
 			system("pause");
 			exit(EXIT_FAILURE);
 		}
-		shader.printActiveAttribs();
+		// shader.printActiveAttribs();
+
 
 		glEnable(GL_PRIMITIVE_RESTART);
 		glPrimitiveRestartIndex(primitiveRestartIndex);
