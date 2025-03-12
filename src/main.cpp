@@ -2,7 +2,7 @@
 
 int main(int, char**)
 {
-    Monotile::Game game = Monotile::Game();
+    monotile::Game game = monotile::Game();
     game.Start();
     return 0;
 }

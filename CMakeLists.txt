@@ -6,6 +6,9 @@ add_executable(MonotileVisualizer
     src/main.cpp 
     src/glad.c 
     src/Game.cpp 
+    src/Renderer.cpp
+    src/Monotile.cpp
+    utils/glslprogram.cpp
     utils/GLUtils.cpp)
 
 target_link_libraries(MonotileVisualizer glfw)

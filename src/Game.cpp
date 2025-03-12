@@ -8,7 +8,6 @@ namespace monotile
 {
     Game::Game()
     {
-
     }
 
     void Game::Start()

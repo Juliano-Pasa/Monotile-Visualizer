@@ -4,6 +4,8 @@
 	Shader class from glslcookbook 4.0
 */
 
+#define GLM_ENABLE_EXPERIMENTAL
+
 
 #ifdef WIN32
 #pragma warning( disable : 4290 )
