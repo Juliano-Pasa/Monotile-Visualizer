@@ -1,4 +1,5 @@
 #include "glad.h"
+#include "glm/glm.hpp"
 
 #include <iostream>
 #include <GLFW/glfw3.h>
@@ -22,6 +23,9 @@ int main(int, char**){
     }
 
     glClearColor(0.25f, 0.5f, 0.75f, 1.0f);
+    glm::vec2 vector = glm::vec2(0, 1);
+
+    std::cout << vector.x << " " << vector.y << "\n";
 
     while (!glfwWindowShouldClose(window))
     {
