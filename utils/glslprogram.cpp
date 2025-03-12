@@ -50,8 +50,7 @@ GLSLProgram::~GLSLProgram() {
 	delete[] shaderNames;
 }
 
-void GLSLProgram::compileShader(const char * fileName)
-throw(GLSLProgramException) {
+void GLSLProgram::compileShader(const char * fileName) {
 	int numExts = sizeof(GLSLShaderInfo::extensions) / sizeof(GLSLShaderInfo::shader_file_extension);
 
 	// Check the file name's extension to determine the shader type
@@ -86,10 +85,7 @@ string GLSLProgram::getExtension(const char * name) {
 	return "";
 }
 
-void GLSLProgram::compileShader(const char * fileName,
-	GLSLShader::GLSLShaderType type)
-	throw(GLSLProgramException)
-{
+void GLSLProgram::compileShader(const char * fileName, GLSLShader::GLSLShaderType type) {
 	if (!fileExists(fileName))
 	{
 		string message = string("Shader: ") + fileName + " not found.";
@@ -117,10 +113,10 @@ void GLSLProgram::compileShader(const char * fileName,
 	compileShader(code.str(), type, fileName);
 }
 
-void GLSLProgram::compileShader(const string & source,
+void GLSLProgram::compileShader(
+	const string & source,
 	GLSLShader::GLSLShaderType type,
 	const char * fileName)
-	throw(GLSLProgramException)
 {
 	if (handle <= 0) {
 		handle = glCreateProgram();
@@ -170,7 +166,7 @@ void GLSLProgram::compileShader(const string & source,
 	}
 }
 
-void GLSLProgram::link() throw(GLSLProgramException)
+void GLSLProgram::link()
 {
 	if (linked) return;
 	if (handle <= 0)
@@ -203,7 +199,7 @@ void GLSLProgram::link() throw(GLSLProgramException)
 	}
 }
 
-void GLSLProgram::use() throw(GLSLProgramException)
+void GLSLProgram::use()
 {
 	if (handle <= 0 || (!linked))
 		throw GLSLProgramException("Shader has not been linked");
@@ -402,7 +398,7 @@ const char * GLSLProgram::getTypeString(GLenum type) {
 	}
 }
 
-void GLSLProgram::validate() throw(GLSLProgramException)
+void GLSLProgram::validate()
 {
 	if (!isLinked())
 		throw GLSLProgramException("Program is not linked");
