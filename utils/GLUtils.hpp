@@ -1,7 +1,8 @@
-#ifndef GLUTILS_H
-#define GLUTILS_H
-#include "GL\glew.h"
-#include "GLFW\glfw3.h"
+#ifndef __GLUTILS_HPP__
+#define __GLUTILS_HPP__
+
+#include "glad.h"
+#include <GLFW/glfw3.h>
 
 namespace GLUtils
 {
@@ -13,4 +14,4 @@ namespace GLUtils
 		GLenum severity, GLsizei length, const GLchar * msg, const void * param );
 }
 
-#endif // GLUTILS_H
+#endif // __GLUTILS_HPP__

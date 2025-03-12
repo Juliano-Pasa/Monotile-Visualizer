@@ -4,6 +4,8 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
 
+#include "GLUtils.hpp"
+
 int main(int, char**){
     GLFWwindow* window;
 
@@ -21,6 +23,8 @@ int main(int, char**){
         glfwTerminate();
         return -1;
     }
+
+    GLUtils::dumpGLInfo();
 
     glClearColor(0.25f, 0.5f, 0.75f, 1.0f);
     glm::vec2 vector = glm::vec2(0, 1);
