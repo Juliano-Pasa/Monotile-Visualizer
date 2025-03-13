@@ -13,6 +13,7 @@ namespace monotile
     void Game::Start()
     {
         InitializeGLFW();
+        InitializeCallbacks();
         InitializeGLAD();
         InitializeGL();
 
