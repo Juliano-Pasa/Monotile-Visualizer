@@ -9,3 +9,37 @@ This project is based on the paper [An aperiodic monotile](https://cs.uwaterloo.
 Although edges and vertices are easy to calculate, there is still a need to fill the shape using triangles. By morphing through the entire spectrum it is possible to determine what vertices can always be connected, this way we can determine the vertices that make up the triangles inside the shape.
 
 ![](assets/readme/Tile_Connections.gif)
+
+## Running the project
+
+#### First, make sure you have `GLFW` in your system includes.
+
+```cmd
+sudo apt-get install libglfw3-dev
+```
+
+#### The project is built with CMake. In the main directory, run:
+
+```cmd
+mkdir build
+cd build
+```
+
+#### Inside the build directory, run:
+
+```cmd
+cmake ../
+cmake --build .
+```
+
+#### And finally, run this to execute:
+
+```cmd
+./MonotileVisualizer
+```
+
+## Keybindings
+- Q --- Increase [side length](https://arxiv.org/pdf/2303.10798#page=12)
+- W --- Decrease side length
+- E --- Toggle wireframe and vertex connections
+- D --- Output side length and pairs of connected vertices

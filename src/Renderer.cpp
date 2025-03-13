@@ -260,7 +260,7 @@ namespace monotile
 	{
 		std::cout << "A | B " << side << " | " << 1 + sqrt(3.0f) - side << std::endl;
 
-		std::cout << "Pares:\n";
+		std::cout << "Pairs:\n";
 		for (auto& pair : connections)
 		{
 			std::cout << pair.first << " | " << pair.second << std::endl;
