@@ -17,9 +17,10 @@ namespace monotile
 		primitiveRestartIndex = -1;
 		currentIndex = 0;
 		side = 1.0f;
-		baseSpeed = 0.2f;
+		baseSpeed = 0.5f;
 		speed = baseSpeed;
 		totalTiles = 1;
+		drawMode = GL_TRIANGLE_FAN;
 	}
 
 	void Renderer::Initialize(int totalHexs)
@@ -36,13 +37,11 @@ namespace monotile
 			system("pause");
 			exit(EXIT_FAILURE);
 		}
-		// shader.printActiveAttribs();
-
 
 		glEnable(GL_PRIMITIVE_RESTART);
 		glPrimitiveRestartIndex(primitiveRestartIndex);
 
-		//GenHexs(totalHexs);
+		GenHexs(totalHexs);
 		GenMonos(totalTiles, side, 0.3f);
 		InitializeConnections();
 		GenBuffers();
@@ -66,16 +65,14 @@ namespace monotile
 		{
 			side -= speed * dt;
 			side = 0.0f;
-			//speed = 0.0;
 		}
 		else if (side < 0.0001f)
 		{
 			side -= speed * dt;
 			side = 1 + sqrt(3.f) - 0.01f;
-			//speed = 0.0;
 		}
 		GenMonos(totalTiles, side, 0.3f);
-		//GenConnections();
+		GenConnections();
 		UpdateBuffers();
 	}
 
@@ -89,9 +86,7 @@ namespace monotile
 		glDepthFunc(GL_LESS);
 
 		glBindVertexArray(vaoID);
-		glDrawElements(GL_TRIANGLE_FAN, indices.size(), GL_UNSIGNED_INT, (GLubyte*)NULL);
-		//glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, (GLubyte*)NULL);
-		//glDrawElements(GL_LINE_LOOP, indices.size(), GL_UNSIGNED_INT, (GLubyte*)NULL);
+		glDrawElements(drawMode, indices.size(), GL_UNSIGNED_INT, (GLubyte*)NULL);
 		glBindVertexArray(0);
 	}
 
@@ -130,7 +125,7 @@ namespace monotile
 
 		for (int i = 0; i < total; i++)
 		{
-			Model model = Monotile::GetMonotileVertices(glm::vec3(-2.5f, -1.5f, 0.f), a + offset * i, GL_TRIANGLE_FAN);
+			Model model = Monotile::GetMonotileVertices(glm::vec3(-2.5f, -1.5f, 0.f), a + offset * i, drawMode);
 
 			vertices.insert(vertices.end(), model.vertices.begin(), model.vertices.end());
 			for (unsigned int index : model.indices)
@@ -220,19 +215,6 @@ namespace monotile
 
 	void Renderer::GenBuffers()
 	{
-		for (auto& vertex : vertices)
-		{
-			std::cout << vertex.x << " " << vertex.y << " " << vertex.z << std::endl;
-		}
-		for (auto& colors : colors)
-		{
-			std::cout << colors.x << " " << colors.y << " " << colors.z << std::endl;
-		}
-		for (auto index : indices)
-		{
-			std::cout << index << std::endl;
-		}
-
 		glGenVertexArrays(1, &vaoID);
 		glBindVertexArray(vaoID);
 
@@ -287,7 +269,6 @@ namespace monotile
 
 	void Renderer::ProcessInput()
 	{
-		// toggle wireframe
 		if (glfwGetKeyOnce(window, 'Q')) {
 			if (speed == 0.0f)
 				speed = baseSpeed;
@@ -299,6 +280,12 @@ namespace monotile
 				speed = -baseSpeed;
 			else
 				speed = 0.0f;
+		}
+		if (glfwGetKeyOnce(window, 'E')) {
+			if (drawMode == GL_TRIANGLE_FAN)
+				drawMode = GL_LINE_LOOP;
+			else
+				drawMode = GL_TRIANGLE_FAN;
 		}
 		if (glfwGetKeyOnce(window, 'D')) {
 			Debug();

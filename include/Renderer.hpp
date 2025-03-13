@@ -55,6 +55,8 @@ namespace monotile
 
 		float side;
 		std::vector<std::pair<unsigned int, unsigned int>> connections;
+
+		GLenum drawMode;
 	};
 }
 
