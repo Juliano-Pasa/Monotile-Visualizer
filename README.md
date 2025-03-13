@@ -2,7 +2,7 @@
 
 ![](assets/readme/Tile_Morphing.gif)
 
-This project is based on the paper [An aperiodic monotile](https://cs.uwaterloo.ca/~csk/hat/). As shown in the paper, the monotile is in fact a continuous spectrum of shapes capable of tiling an infinite plane without ever becoming periodic. In this spectrum, edge proportions and angles between them are constant, so it's possible to generate these tiles proceduraly.
+This project is based on the paper [An aperiodic monotile](https://cs.uwaterloo.ca/~csk/hat/). As shown in the paper, the monotile is in fact a continuous spectrum of shapes capable of tiling an infinite plane without ever becoming periodic. In this spectrum, edge proportions and angles between them are constant, so it's possible to generate these tiles procedurally.
 
 ## Rendering with OpenGL
 
